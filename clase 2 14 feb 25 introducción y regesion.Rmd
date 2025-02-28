@@ -1,0 +1,242 @@
+---
+title: "Clase 11 feb 25 introducción"
+output: html_document
+date: "2025-02-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r}
+2+2
+```
+
+
+
+
+
+
+
+```{r}
+
+library(quantmod)
+```
+
+```{r}
+getSymbols("TSLA",from= "2019-11-29")
+```
+
+```{r}
+getSymbols("DE", from= "2019-11-29")
+```
+
+
+```{r}
+getSymbols("AAPL", from= "2019-11-29")
+```
+
+
+```{r}
+tsla1 <-(TSLA$TSLA.Open)
+```
+
+```{r}
+de1 <-(DE$DE.Open)
+de2 <-(DE$DE.High)
+de3 <-(DE$DE.Close)
+```
+
+```{r}
+aapl1 <-(AAPL$AAPL.Open)
+aapl2 <-(AAPL$AAPL.High)
+aapl3 <-(AAPL$AAPL.Close)
+```
+
+
+
+```{r}
+tsla1 <- na.omit(tsla1)
+```
+
+
+```{r}
+plot(tsla1)
+```
+
+
+```{r}
+plot(de1)
+plot(de2)
+plot(de3)
+```
+
+
+```{r}
+plot(aapl1)
+plot(aapl2)
+plot(aapl3)
+```
+
+
+
+```{r}
+tsla1_dailyreturns<- dailyReturn(tsla1)
+```
+
+
+```{r}
+tsla1_weeklyreturns<- weeklyReturn(tsla1)
+```
+
+
+```{r}
+tsla1_monthlyreturns <- monthlyReturn(tsla1)
+```
+
+
+```{r}
+aapl1_dailyreturns <- dailyReturn(aapl1)
+```
+
+
+```{r}
+aapl1_weeklyreturns <- weeklyReturn(aapl1)
+```
+
+
+```{r}
+aapl1_monthlyreturns <- monthlyReturn(aapl1)
+```
+
+
+```{r}
+de1_dailyreturns <- dailyReturn(de1)
+```
+
+
+```{r}
+de1_weeklyreturns <- weeklyReturn(de1)
+```
+
+
+```{r}
+de1_monthlyreturns <- monthlyReturn(de1)
+```
+
+
+```{r}
+plot(tsla1_dailyreturns)
+```
+
+
+
+```{r}
+plot(tsla1, main = "Precios open de TSLA desde 2019")
+```
+
+
+
+```{r}
+plot(aapl1_monthlyreturns, main = "Rendimientos mensuales AAPL desde 2019")
+```
+
+
+```{r}
+barplot(tsla1_monthlyreturns, main= "Rendimientos mensuales de TSLA desde 2019 en barras")
+```
+
+
+```{r}
+barplot(aapl1, main= "Apertura de AAPL desde 2019 en barras")
+```
+
+
+
+```{r}
+barplot(de1_monthlyreturns, main= "Retornos mensuales DE desde 2019 en barras")
+```
+
+
+```{r}
+aapl2_weeklyreturns <- weeklyReturn(aapl2)
+```
+
+
+```{r}
+barplot(aapl2_weeklyreturns, main= "Rendimientos mensuales (altos) de AAPL semanales")
+```
+
+
+```{r}
+plot_tsla1 <- barplot(na.omit(tsla1_monthlyreturns), main = "Retornos mensuales Open de TSLA desde 2019")
+text(x = plot_tsla1, y = na.omit(tsla1_monthlyreturns) + .09, labels = as.character(round(na.omit(tsla1_monthlyreturns), 4)))
+```
+
+
+```{r}
+getSymbols("NVDA", from= "2019-11-29")
+```
+
+
+```{r}
+nvda1<-(NVDA$NVDA.Open)
+nvda2<-(NVDA$NVDA.High)
+nvda3<-(NVDA$NVDA.Close)
+```
+
+
+```{r}
+nvda1_dailyreturns <- dailyReturn(nvda1)
+```
+
+
+```{r}
+nvda1_weeklyreturns <- weeklyReturn(nvda1)
+```
+
+
+```{r}
+nvda1_monthlyreturns <- monthlyReturn(nvda1)
+```
+
+
+```{r}
+plot_nvda1 <- barplot(na.omit(nvda1_monthlyreturns), main = "Retornos mensuales Open de NVDA desde 2019")
+text(x = plot_nvda1, y = na.omit(nvda1_monthlyreturns) + 0.7, labels = as.character(round(na.omit(nvda1_monthlyreturns), 3)))
+```
+
+
+```{r}
+nvda3_monthlyreturns <- monthlyReturn(nvda3)
+```
+
+```{r}
+plot_nvda3 <- barplot(na.omit(nvda3_monthlyreturns), main = "Retornos mensuales Close de NVDA desde 2019")
+text(x = plot_nvda3, y = na.omit(nvda3_monthlyreturns) + 0.8, labels = as.character(round(na.omit(nvda3_monthlyreturns), 1)))
+```
+
+# Federico Vinatier Villarreal A00838009
+
+# NVDA. (s. f.). Nasdaq. https://www.nasdaq.com/market-activity/stocks/nvda
